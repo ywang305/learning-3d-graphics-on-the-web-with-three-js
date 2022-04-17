@@ -61,6 +61,91 @@ https://codesandbox.io/s/laughing-faraday-gietv0?file=/chapter-04/04_04/end/inde
   scene.fog = new THREE.FogExp2(0xffffff, 0.2);
   ```
 ### 3 Lights
-- [dat.GUI & orbit controls](https://codesandbox.io/s/pedantic-hawking-sn8v86?file=/chapter-03/03_04/end/main.js:55-58) \
-  <img width='400' src="https://user-images.githubusercontent.com/24782000/163728626-31c3315c-319d-423b-add2-1de6013df721.png" />
+- <details>
+  <summary> dat.GUI & orbit controls </summary>
+    <img width='400' src="https://user-images.githubusercontent.com/24782000/163728626-31c3315c-319d-423b-add2-1de6013df721.png" />
+  </details>
+- <details>
+  <summary> Shadows </summary>
+  
+    [Shadows](chapter-03/03_05/end/main.js)
+    Rendering shadow is unfortunately not too straightforward.
+    - First we need to tell the renderer to start rendering shadows. `renderer.shadowMap.enable = true` 
+    - And then we need to tell the light to cast shadows.  `light.castShadow = true;`
+    - Then we should also tell the objects to cast or receive shadows. In our case we will make the box cast shadows `mesh.castShadow = true`, and the plane 
+  </details>
+- <details>
+  <summary> group </summary>
+  
+    [group as container](chapter-03/03_06/end/main.js)
+    ```js
+      // work as a container
+      var group = new THREE.Group();
+      group.add(obj)
+    ```
+    <img width="566" alt="image" src="https://user-images.githubusercontent.com/24782000/163734109-ad237c65-07f8-400b-bdc2-c1b01f9a8d27.png">
+  </details>
+- <details>
+  <summary> SpotLight </summary>
+  
+    [define](chapter-03/03_07/end/main.js)
+    ```js
+      function getSpotLight(intensity) {
+        var light = new THREE.SpotLight(0xffffff, intensity);
+        light.castShadow = true;
+
+        light.shadow.bias = 0.001; // look better
+        light.shadow.mapSize.width = 2048; // resolution, default 1024*1024
+        light.shadow.mapSize.height = 2048;
+
+        return light;
+      }
+    ```
+    <img width="566" alt="image" src="https://user-images.githubusercontent.com/24782000/163734109-ad237c65-07f8-400b-bdc2-c1b01f9a8d27.png">
+  </details>
+- <details>
+  <summary> DirectionalLight </summary>
+  
+    [means parallel light](chapter-03/03_08/end/main.js)
+    ```js
+      function getDirectionalLight(intensity) {
+        var light = new THREE.DirectionalLight(0xffffff, intensity);
+        light.castShadow = true;
+
+        light.shadow.camera.left = -10;
+        light.shadow.camera.bottom = -10;
+        light.shadow.camera.right = 10;
+        light.shadow.camera.top = 10;
+
+        return light;
+      }
+  
+      // to check the parallel, add CameraHelper
+      // The camera helper is just the helper geometry that shows us the field of view of the camera.
+      var helper = new THREE.CameraHelper(directionalLight.shadow.camera);
+    ```
+    <img width="542" alt="image" src="https://user-images.githubusercontent.com/24782000/163735216-1509c118-7aba-4d1d-9697-4be793e8afdb.png">
+  </details>
+- <details>
+  <summary> AmbientLight </summary>
+  
+    [means parallel light](chapter-03/03_09/end/main.js)
+    ```js
+      function getAmbientLight(intensity) {
+        var light = new THREE.AmbientLight('rgb(10, 30, 50)', intensity);
+
+        return light;
+      }
+    ```
+    As you can see, ambient light illuminates all the objects in the scene equally. It doesn't have any direction, and it doesn't cast any shadows. Because of these reasons, it doesn't come close to how lighting behaves in real life. So you should use it sparingly if you are looking to create realistic scenes. 
+    The pic shows ambient light work alone with directional light:
+    <img width="545" alt="image" src="https://user-images.githubusercontent.com/24782000/163735412-6179c579-1214-49fd-b1bf-102ec425bb54.png">
+  </details>
+- <details>
+  <summary>RectAreaLight</summary>
+  
+  a more realistic light [see docs](https://threejs.org/docs/#api/en/lights/RectAreaLight)
+  </details>
+  
+
   
