@@ -97,7 +97,7 @@ https://codesandbox.io/s/laughing-faraday-gietv0?file=/chapter-04/04_04/end/inde
         var light = new THREE.SpotLight(0xffffff, intensity);
         light.castShadow = true;
 
-        light.shadow.bias = 0.001; // look better
+        light.shadow.bias = 0.001; // Which parameter do you need to adjust to remove some of the common shadow map artifacts?
         light.shadow.mapSize.width = 2048; // resolution, default 1024*1024
         light.shadow.mapSize.height = 2048;
 
@@ -150,5 +150,7 @@ https://codesandbox.io/s/laughing-faraday-gietv0?file=/chapter-04/04_04/end/inde
   a more realistic light [see docs](https://threejs.org/docs/#api/en/lights/RectAreaLight)
   </details>
   
-
-  
+### 4 Animations
+<details>
+<summary>random, sin, cos</summary>
+</details>
