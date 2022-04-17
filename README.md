@@ -19,8 +19,9 @@ https://codesandbox.io/s/laughing-faraday-gietv0?file=/chapter-04/04_04/end/inde
 ---
 
 ## Transcript
-
 ### 2 Three.js Scene Object
+<details>
+<summary> details </summary>
 
 - Three.js objects
   - Most objects in Three.js are instances of the object Three base class. 
@@ -60,6 +61,8 @@ https://codesandbox.io/s/laughing-faraday-gietv0?file=/chapter-04/04_04/end/inde
   ```js
   scene.fog = new THREE.FogExp2(0xffffff, 0.2);
   ```
+</details>
+
 ### 3 Lights
 - <details>
   <summary> dat.GUI & orbit controls </summary>
