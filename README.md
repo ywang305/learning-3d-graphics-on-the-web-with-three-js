@@ -61,3 +61,6 @@ https://codesandbox.io/s/laughing-faraday-gietv0?file=/chapter-04/04_04/end/inde
   scene.fog = new THREE.FogExp2(0xffffff, 0.2);
   ```
 ### 3 Lights
+- [dat.GUI & orbit controls](https://codesandbox.io/s/pedantic-hawking-sn8v86?file=/chapter-03/03_04/end/main.js:55-58) \
+  <img width='400' src="https://user-images.githubusercontent.com/24782000/163728626-31c3315c-319d-423b-add2-1de6013df721.png" />
+  
