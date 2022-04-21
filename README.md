@@ -151,6 +151,46 @@ https://codesandbox.io/s/laughing-faraday-gietv0?file=/chapter-04/04_04/end/inde
   </details>
   
 ### 4 Animations
-<details>
-<summary>random, sin, cos</summary>
-</details>
+- <details>
+  <summary>Orthographic Camera</summary>
+  
+  ```js
+  var camera = new THREE.OrthographicCamera(
+		-15,
+		15,
+		15,
+		-15,
+		1,
+		1000
+	);
+  ```
+  ![image](https://user-images.githubusercontent.com/24782000/164358426-73530924-eefc-4677-b304-a85fb1d95226.png)
+  </details>
+- <details>
+  <summary>Animation Rig</summary>
+  
+  to build a simple camera animation
+  ```js
+  var camera = new THREE.PerspectiveCamera(
+		45,
+		window.innerWidth/window.innerHeight,
+		1,
+		1000
+	);
+
+	var cameraZPosition = new THREE.Group();
+	var cameraXRotation = new THREE.Group();
+	var cameraYRotation = new THREE.Group();
+
+	cameraZPosition.add(camera);
+	cameraXRotation.add(cameraZPosition);
+	cameraYRotation.add(cameraXRotation);
+	scene.add(cameraYRotation);
+
+	gui.add(cameraZPosition.position, 'z', 0, 100);
+	gui.add(cameraYRotation.rotation, 'y', -Math.PI, Math.PI);
+	gui.add(cameraXRotation.rotation, 'x', -Math.PI, Math.PI);
+  ```
+  
+  <img width="626" alt="image" src="https://user-images.githubusercontent.com/24782000/164359801-6cd443c6-e040-4c5d-8062-eb629f90e38b.png">
+  </details>
