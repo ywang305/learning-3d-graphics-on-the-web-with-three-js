@@ -194,3 +194,81 @@ https://codesandbox.io/s/laughing-faraday-gietv0?file=/chapter-04/04_04/end/inde
   
   <img width="626" alt="image" src="https://user-images.githubusercontent.com/24782000/164359801-6cd443c6-e040-4c5d-8062-eb629f90e38b.png">
   </details>
+
+### Materials and Textures
+- <details>
+  <summary>MeshLamberMaterial and MeshPhongMaterial</summary>
+
+  Here are the key takeaways from the "MeshLambertMaterial and MeshPhongMaterial" video:
+
+	Using MeshLambertMaterial:
+	
+	MeshLambertMaterial is suitable for simulating non-shiny surfaces like rubber, clay, or stone.
+	```javascript
+	const material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+	const sphere = new THREE.Mesh(new THREE.SphereGeometry(5, 32, 32), material);
+	scene.add(sphere);
+	```
+ 
+	Switching to MeshPhongMaterial:
+	
+	MeshPhongMaterial allows control over highlights and is better for simulating glossy surfaces.
+	```javascript
+	const material = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 30 });
+	const sphere = new THREE.Mesh(new THREE.SphereGeometry(5, 32, 32), material);
+	scene.add(sphere);
+	```
+ 
+	Adjusting Shininess:
+	
+	The shininess attribute in MeshPhongMaterial controls the sharpness of light reflections.
+	```javascript
+	const material = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 100 });
+	const sphere = new THREE.Mesh(new THREE.SphereGeometry(5, 32, 32), material);
+	scene.add(sphere);
+	```
+ 
+	Using dat.GUI to Control Shininess:
+	
+	dat.GUI can be used to create a user interface for adjusting material properties.
+	```javascript
+	const gui = new dat.GUI();
+	const material = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 30 });
+	const sphere = new THREE.Mesh(new THREE.SphereGeometry(5, 32, 32), material);
+	scene.add(sphere);
+	```
+	
+	gui.add(material, 'shininess', 0, 1000);
+		
+	These examples illustrate how to use MeshLambertMaterial and MeshPhongMaterial in three.js and adjust their properties for different visual effects.
+</details>
+
+- <details>
+  <summary>MeshStandardMaterial</summary>
+	Here are the key takeaways from the "MeshStandardMaterial" video:
+
+	Realistic Rendering:
+	
+	MeshStandardMaterial uses physically based rendering for more realistic results.
+	```javascript
+	const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+	const sphere = new THREE.Mesh(new THREE.SphereGeometry(5, 32, 32), material);
+	scene.add(sphere);
+	```
+ 
+	Roughness Parameter:
+	
+	Controls the sharpness of reflections. Lower values result in sharper reflections, higher values result in blurrier reflections.
+	```javascript
+	material.roughness = 0.5; // Value between 0 and 1
+	```
+ 
+	Metalness Parameter:
+	
+	Affects the lighting and reflection distribution, controlling how metallic an object looks.
+	```javascript
+	material.metalness = 0.8; // Value between 0 and 1
+	```
+	
+	These points illustrate how MeshStandardMaterial can be used to create more realistic materials in three.js.
+</details>
